@@ -2,6 +2,12 @@ import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 import { Loader } from '@googlemaps/js-api-loader';
 
+interface MyWindow extends Window {  
+    apikey: string
+}  
+
+declare var window: MyWindow;  
+
 declare var google: {
     maps: {
         LatLng: any
@@ -10,15 +16,10 @@ declare var google: {
     }
 };
 
-const fetchApiKey = async () => {
-    const resp = await fetch('/apikey.json');
-    return await resp.json() as {apikey: string};
-};
-
 const initMap = async () => {
 
     await new Loader({
-        apiKey: (await fetchApiKey()).apikey,
+        apiKey: window.apikey,
         libraries: ['visualization']
     }).loadPromise();
 
