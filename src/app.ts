@@ -44,7 +44,12 @@ const initMap = async () => {
 
     const map = new google.maps.Map(document.getElementById("map"), {
         center: tokyo,
-        zoom: 10
+        zoom: 10,
+        mapTypeControl: false,
+        zoomControl: false,
+        fullscreenControl: false,
+        rotateControl: false,
+        streetViewControl: false,
     });
 
     const heatmap = new google.maps.visualization.HeatmapLayer({
